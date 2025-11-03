@@ -1,22 +1,22 @@
 {
   "mappings": [
-    "/content/refdemoeds-ue-rug/language-masters/en:/",
-    "/content/refdemoeds-ue-rug/language-masters/en/:/en/",
-    "/content/refdemoeds-ue-rug/language-masters/fr/:/fr/",
-    "/content/refdemoeds-ue-rug/language-masters/fr:/fr",
-    "/content/refdemoeds-ue-rug/language-masters/es/:/es/",
-    "/content/refdemoeds-ue-rug/language-masters/es:/es",
-    "/content/refdemoeds-ue-rug/language-masters/ja/:/ja/",
-    "/content/refdemoeds-ue-rug/language-masters/ja:/ja",
-    "/content/refdemoeds-ue-rug/language-masters/de/:/de/",
-    "/content/refdemoeds-ue-rug/language-masters/de:/de",
-    "/content/refdemoeds-ue-rug/configuration:/.helix/config.json",
-    "/content/refdemoeds-ue-rug/metadata:/metadata.json",
-    "/content/refdemoeds-ue-rug/redirects:/redirects.json",
-    "/content/refdemoeds-ue-rug/placeholders:/placeholders.json"
+    "/content/RefDemoEDS-UE-RUG/language-masters/en:/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/en/:/en/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/fr/:/fr/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/fr:/fr",
+    "/content/RefDemoEDS-UE-RUG/language-masters/es/:/es/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/es:/es",
+    "/content/RefDemoEDS-UE-RUG/language-masters/ja/:/ja/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/ja:/ja",
+    "/content/RefDemoEDS-UE-RUG/language-masters/de/:/de/",
+    "/content/RefDemoEDS-UE-RUG/language-masters/de:/de",
+    "/content/RefDemoEDS-UE-RUG/configuration:/.helix/config.json",
+    "/content/RefDemoEDS-UE-RUG/metadata:/metadata.json",
+    "/content/RefDemoEDS-UE-RUG/redirects:/redirects.json",
+    "/content/RefDemoEDS-UE-RUG/placeholders:/placeholders.json"
   ],
   "includes": [
-    "/content/refdemoeds-ue-rug/",
-    "/content/dam/refdemoeds-ue-rug/"
+    "/content/RefDemoEDS-UE-RUG/",
+    "/content/dam/RefDemoEDS-UE-RUG/"
   ]
 }
