@@ -192,6 +192,15 @@
     "id": "section",
     "fields": [
       {
+<<<<<<< HEAD
+=======
+        "component": "text",
+        "name": "name",
+        "label": "Section Name",
+        "description": "The label shown for this section in the Content Tree"
+      },
+      {
+>>>>>>> template/main
         "component": "select",
         "name": "sec-spacing",
         "value": "",
@@ -733,6 +742,7 @@
           "multi": false,
           "description": "Select AEM DAM repository from asset selector if using Delivery Type as Dynamic Media. Select DM delivery repository from asset selector if using Delivery Type as Dynamic Media with OpenAPI",
           "required": true
+<<<<<<< HEAD
         },        
         {
           "condition": {
@@ -743,6 +753,8 @@
             "value": "https://s7g10.scene7.com/is/image/RaulUgarteEMEA002",
             "label": "Dynamic Media URL",
             "valueType": "string"
+=======
+>>>>>>> template/main
         },
         {
           "condition": {
@@ -854,6 +866,28 @@
     ]
   },
   {
+<<<<<<< HEAD
+=======
+    "id": "quote",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quotation",
+        "value": "",
+        "label": "Quotation"
+      },
+      {
+        "component": "richtext",
+        "name": "attribution",
+        "value": "",
+        "label": "Attribution",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+>>>>>>> template/main
       "id": "search",
       "fields": [
         {
@@ -4370,6 +4404,87 @@
     ]
   },
   {
+<<<<<<< HEAD
+=======
+    "id": "tabs",
+    "fields": [
+      {
+        "component": "select",
+        "name": "tabsstyle",
+        "label": "Tabs Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Card Style",
+            "value": "card-style-tab"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Tab Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_heading",
+        "value": "",
+        "label": "Heading"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_headingType",
+        "value": "",
+        "label": "Heading Type",
+        "options": [
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "content_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "content_richtext",
+        "value": "",
+        "label": "Content",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+>>>>>>> template/main
     "id": "form-submit-button",
     "fields": [
       {

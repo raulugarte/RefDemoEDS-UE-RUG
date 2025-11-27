@@ -20,12 +20,20 @@
       "fragment",
       "hero",
       "image",
+<<<<<<< HEAD
+=======
+      "quote",
+>>>>>>> template/main
       "teaser",
       "text",
       "title",
       "video",
       "search",
       "separator",
+<<<<<<< HEAD
+=======
+      "tabs",
+>>>>>>> template/main
       "form",
       "forex",
       "accordion",
@@ -68,6 +76,15 @@
     ]
   },
   {
+<<<<<<< HEAD
+=======
+    "id": "tabs",
+    "components": [
+      "tabs-item"
+    ]
+  },
+  {
+>>>>>>> template/main
     "id": "form",
     "components": [
       "captcha",

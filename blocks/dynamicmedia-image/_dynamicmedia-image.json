@@ -53,6 +53,7 @@
         },
         {
           "condition": {
+<<<<<<< HEAD
             "===": [{ "var": "delivery_Type" }, "dm"]
           },
             "component": "text",
@@ -63,6 +64,8 @@
         },
         {
           "condition": {
+=======
+>>>>>>> template/main
             "===": [{ "var": "delivery_Type" }, "dm-openapi"]
           },
           "component": "select",

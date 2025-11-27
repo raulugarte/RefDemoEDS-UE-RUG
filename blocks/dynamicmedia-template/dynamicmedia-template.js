@@ -12,8 +12,13 @@ export default async function decorate(block) {
   
   let configSrc = Array.from(block.children)[0]?.textContent?.trim(); //inline or cf
 
+<<<<<<< HEAD
   
   if(configSrc === 'inline'){
+=======
+  //fallback default to inline mode
+  if(configSrc === 'inline' || !configSrc){
+>>>>>>> template/main
     // Get DM Url input
     let templateURL = inputs[1]?.textContent?.trim();
     let variablemapping = inputs[2]?.textContent?.trim();
@@ -98,6 +103,7 @@ export default async function decorate(block) {
       block.append(finalImg);
     }
     
+<<<<<<< HEAD
   } if(configSrc === 'cf'){
 
     //https://author-p153659-e1620914.adobeaemcloud.com/graphql/execute.json/wknd-universal/DynamicMediaTemplateByPath;path=
@@ -107,6 +113,16 @@ export default async function decorate(block) {
       WRAPPER_SERVICE_PARAMS: 'api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=e81iCCcESEf9NzzxLvbfMGPmredbADtTZSs8mspUTa4',
       GRAPHQL_QUERY: '/graphql/execute.json/ref-demo-eds/DynamicMediaTemplateByPath'
     };
+=======
+  } else if(configSrc === 'cf'){
+
+    //https://author-p153659-e1620914.adobeaemcloud.com/graphql/execute.json/wknd-universal/DynamicMediaTemplateByPath;path=
+    const CONFIG = {
+      WRAPPER_SERVICE_URL: 'https://3635370-refdemoapigateway-stage.adobeioruntime.net/api/v1/web/ref-demo-api-gateway/fetch-cf',
+      GRAPHQL_QUERY: '/graphql/execute.json/ref-demo-eds/DynamicMediaTemplateByPath',
+    };
+  
+>>>>>>> template/main
     
     const hostnameFromPlaceholders = await getHostname();
     const hostname = hostnameFromPlaceholders ? hostnameFromPlaceholders : getMetadata('hostname');	
@@ -127,13 +143,21 @@ export default async function decorate(block) {
         headers: { 'Content-Type': 'application/json' }
       }
     : {
+<<<<<<< HEAD
         url: `${CONFIG.WRAPPER_SERVICE_URL}?${CONFIG.WRAPPER_SERVICE_PARAMS}`,
+=======
+        url: `${CONFIG.WRAPPER_SERVICE_URL}`,
+>>>>>>> template/main
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           graphQLPath: `${aempublishurl}${CONFIG.GRAPHQL_QUERY}`,
           cfPath: contentPath,
+<<<<<<< HEAD
           variation: 'master'
+=======
+          variation: `master;ts=${Date.now()}`
+>>>>>>> template/main
         })
       };
   

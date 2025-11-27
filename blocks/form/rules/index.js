@@ -118,7 +118,11 @@ async function fieldChanged(payload, form, generateFormRendition) {
             field.value = displayValue;
           }
         } else if (fieldType === 'radio-group' || fieldType === 'checkbox-group') {
+<<<<<<< HEAD
           field.querySelectorAll(`input[name=${name}]`).forEach((el) => {
+=======
+          field.querySelectorAll(`input[name=${id}_${name}]`).forEach((el) => {
+>>>>>>> template/main
             const exists = (Array.isArray(valueToSet)
               && valueToSet.some((x) => compare(x, el.value, type.replace('[]', ''))))
               || compare(valueToSet, el.value, type);
@@ -148,7 +152,11 @@ async function fieldChanged(payload, form, generateFormRendition) {
         // If checkboxgroup/radiogroup/drop-down is readOnly then it should remain disabled.
         if (fieldType === 'radio-group' || fieldType === 'checkbox-group') {
           if (readOnly === false) {
+<<<<<<< HEAD
             field.querySelectorAll(`input[name=${name}]`).forEach((el) => {
+=======
+            field.querySelectorAll(`input[name=${id}_${name}]`).forEach((el) => {
+>>>>>>> template/main
               disableElement(el, !currentValue);
             });
           }
@@ -166,7 +174,11 @@ async function fieldChanged(payload, form, generateFormRendition) {
         break;
       case 'readOnly':
         if (fieldType === 'radio-group' || fieldType === 'checkbox-group') {
+<<<<<<< HEAD
           field.querySelectorAll(`input[name=${name}]`).forEach((el) => {
+=======
+          field.querySelectorAll(`input[name=${id}_${name}]`).forEach((el) => {
+>>>>>>> template/main
             disableElement(el, currentValue);
           });
         } else if (fieldType === 'drop-down') {
@@ -222,6 +234,12 @@ async function fieldChanged(payload, form, generateFormRendition) {
       case 'valid':
         if (currentValue === true) {
           updateOrCreateInvalidMsg(field, '');
+<<<<<<< HEAD
+=======
+          if (field.validity?.customError) {
+            field?.setCustomValidity('');
+          }
+>>>>>>> template/main
         }
         break;
       case 'enum':

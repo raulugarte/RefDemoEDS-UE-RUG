@@ -302,6 +302,7 @@ const closeSearchOnFocusOut = (e, navTools) => {
   }
 };
 
+<<<<<<< HEAD
 let listOfAllPlaceholdersData = [];
 
 
@@ -338,6 +339,8 @@ async function fetchingPlaceholdersData() {
 }
 
 
+=======
+>>>>>>> template/main
 async function addLogoLink(langCode) {
 
   //urn:aemconnection:/content/wknd-universal/language-masters/en/magazine/jcr:content
@@ -378,6 +381,7 @@ async function addLogoLink(langCode) {
 async function applyCFTheme(themeCFReference) {
    if (!themeCFReference) return;
   
+<<<<<<< HEAD
   // Configuration
   const CONFIG = {
     WRAPPER_SERVICE_URL: 'https://prod-60.eastus2.logic.azure.com:443/workflows/94ef4cd1fc1243e08aeab8ae74bc7980/triggers/manual/paths/invoke',
@@ -386,6 +390,14 @@ async function applyCFTheme(themeCFReference) {
     EXCLUDED_THEME_KEYS: new Set(['brandSite', 'brandLogo'])
   };
   
+=======
+  const CONFIG = {
+    WRAPPER_SERVICE_URL: 'https://3635370-refdemoapigateway-stage.adobeioruntime.net/api/v1/web/ref-demo-api-gateway/fetch-cf',
+    GRAPHQL_QUERY: '/graphql/execute.json/ref-demo-eds/BrandThemeByPath',
+    EXCLUDED_THEME_KEYS: new Set(['brandSite', 'brandLogo'])
+  };
+
+>>>>>>> template/main
   try {
     const decodedThemeCFReference = decodeURIComponent(themeCFReference);
     const hostnameFromPlaceholders = await getHostname();
@@ -402,13 +414,21 @@ async function applyCFTheme(themeCFReference) {
           headers: { 'Content-Type': 'application/json' }
         }
       : {
+<<<<<<< HEAD
           url: `${CONFIG.WRAPPER_SERVICE_URL}?${CONFIG.WRAPPER_SERVICE_PARAMS}`,
+=======
+          url: `${CONFIG.WRAPPER_SERVICE_URL}`,
+>>>>>>> template/main
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             graphQLPath: `${aempublishurl}${CONFIG.GRAPHQL_QUERY}`,
             cfPath: decodedThemeCFReference,
+<<<<<<< HEAD
             variation: "master"
+=======
+            variation: `master;ts=${Date.now()}`
+>>>>>>> template/main
           })
         };
 

@@ -246,12 +246,15 @@ function decoratePanelContainer(panelDefinition, panelContainer) {
 
   const shouldAddLabel = (container, panel) => panel.label && !container.querySelector(`legend[for=${container.dataset.id}]`);
 
+<<<<<<< HEAD
   const isContainerRepeatable = (container) => container.dataset?.repeatable === 'true' && container.dataset?.variant !== 'noButtons';
 
   const needsAddButton = (container) => !container.querySelector(':scope > .repeat-actions');
 
   const needsRemoveButton = (container) => !container.querySelector(':scope > .item-remove');
 
+=======
+>>>>>>> template/main
   if (isPanelWrapper(panelContainer)) {
     if (shouldAddLabel(panelContainer, panelDefinition)) {
       const legend = createLegend(panelDefinition);
@@ -259,6 +262,7 @@ function decoratePanelContainer(panelDefinition, panelContainer) {
         panelContainer.insertAdjacentElement('afterbegin', legend);
       }
     }
+<<<<<<< HEAD
 
     if (isContainerRepeatable(panelContainer)) {
       if (needsAddButton(panelContainer)) {
@@ -268,6 +272,8 @@ function decoratePanelContainer(panelDefinition, panelContainer) {
         insertRemoveButton(panelContainer, panelContainer);
       }
     }
+=======
+>>>>>>> template/main
   }
 }
 
@@ -333,6 +339,13 @@ function enableValidation(form) {
   });
 }
 
+<<<<<<< HEAD
+=======
+function isDocumentBasedForm(formDef) {
+  return formDef?.[':type'] === 'sheet' && formDef?.data;
+}
+
+>>>>>>> template/main
 async function createFormForAuthoring(formDef) {
   const form = document.createElement('form');
   await generateFormRendition(formDef, form, formDef.id, (container) => {
@@ -344,10 +357,18 @@ async function createFormForAuthoring(formDef) {
   return form;
 }
 
+<<<<<<< HEAD
 export async function createForm(formDef, data) {
   const { action: formPath } = formDef;
   const form = document.createElement('form');
   form.dataset.action = formPath;
+=======
+export async function createForm(formDef, data, source = 'aem') {
+  const { action: formPath } = formDef;
+  const form = document.createElement('form');
+  form.dataset.action = formPath;
+  form.dataset.source = source;
+>>>>>>> template/main
   form.noValidate = true;
   if (formDef.appliedCssClassNames) {
     form.className = formDef.appliedCssClassNames;
@@ -371,7 +392,11 @@ export async function createForm(formDef, data) {
   }
 
   enableValidation(form);
+<<<<<<< HEAD
   transferRepeatableDOM(form);
+=======
+  transferRepeatableDOM(form, formDef, form, formId);
+>>>>>>> template/main
 
   if (afModule && typeof Worker === 'undefined') {
     window.setTimeout(async () => {
@@ -398,10 +423,13 @@ export async function createForm(formDef, data) {
   };
 }
 
+<<<<<<< HEAD
 function isDocumentBasedForm(formDef) {
   return formDef?.[':type'] === 'sheet' && formDef?.data;
 }
 
+=======
+>>>>>>> template/main
 function cleanUp(content) {
   const formDef = content.replaceAll('^(([^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9]+\\\\.)\\+[a-zA-Z]{2,}))$', '');
   return formDef?.replace(/\x83\n|\n|\s\s+/g, '');
@@ -539,7 +567,11 @@ export default async function decorate(block) {
       const transform = new DocBasedFormToAF();
       formDef = transform.transform(formDef);
       source = 'sheet';
+<<<<<<< HEAD
       const response = await createForm(formDef);
+=======
+      const response = await createForm(formDef, null, source);
+>>>>>>> template/main
       form = response?.form;
       const docRuleEngine = await import('./rules-doc/index.js');
       docRuleEngine.default(formDef, form);

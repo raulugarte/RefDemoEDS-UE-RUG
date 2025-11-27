@@ -20,7 +20,11 @@
 
 /*
  *  Package: @aemforms/af-core
+<<<<<<< HEAD
  *  Version: 0.22.150
+=======
+ *  Version: 0.22.157
+>>>>>>> template/main
  */
 var EventSource;
 (function (EventSource) {

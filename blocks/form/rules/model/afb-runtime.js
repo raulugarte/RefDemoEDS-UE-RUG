@@ -20,7 +20,11 @@
 
 /*
  *  Package: @aemforms/af-core
+<<<<<<< HEAD
  *  Version: 0.22.150
+=======
+ *  Version: 0.22.157
+>>>>>>> template/main
  */
 import { propertyChange, ExecuteRule, Initialize, RemoveItem, Change, FormLoad, FieldChanged, ValidationComplete, Valid, Invalid, SubmitSuccess, CustomEvent, RequestSuccess, RequestFailure, SubmitError, Submit, Save, Reset, SubmitFailure, Focus, RemoveInstance, AddInstance, AddItem, Click } from './afb-events.js';
 import Formula from '../formula/index.js';
@@ -49,7 +53,12 @@ const ConstraintType = Object.freeze({
     MAX_ITEMS_MISMATCH: 'maxItemsMismatch',
     EXPRESSION_MISMATCH: 'expressionMismatch',
     EXCLUSIVE_MAXIMUM_MISMATCH: 'exclusiveMaximumMismatch',
+<<<<<<< HEAD
     EXCLUSIVE_MINIMUM_MISMATCH: 'exclusiveMinimumMismatch'
+=======
+    EXCLUSIVE_MINIMUM_MISMATCH: 'exclusiveMinimumMismatch',
+    ENUM_MISMATCH: 'enumMismatch'
+>>>>>>> template/main
 });
 const constraintKeys = Object.freeze({
     pattern: ConstraintType.PATTERN_MISMATCH,
@@ -68,7 +77,12 @@ const constraintKeys = Object.freeze({
     maxItems: ConstraintType.MAX_ITEMS_MISMATCH,
     validationExpression: ConstraintType.EXPRESSION_MISMATCH,
     exclusiveMinimum: ConstraintType.EXCLUSIVE_MINIMUM_MISMATCH,
+<<<<<<< HEAD
     exclusiveMaximum: ConstraintType.EXCLUSIVE_MAXIMUM_MISMATCH
+=======
+    exclusiveMaximum: ConstraintType.EXCLUSIVE_MAXIMUM_MISMATCH,
+    enum: ConstraintType.ENUM_MISMATCH
+>>>>>>> template/main
 });
 const defaultConstraintTypeMessages = Object.freeze({
     [ConstraintType.PATTERN_MISMATCH]: 'Please match the format requested.',
@@ -87,7 +101,12 @@ const defaultConstraintTypeMessages = Object.freeze({
     [ConstraintType.MAX_ITEMS_MISMATCH]: 'Specify a number of items equal to or less than ${0}.',
     [ConstraintType.EXPRESSION_MISMATCH]: 'Please enter a valid value.',
     [ConstraintType.EXCLUSIVE_MINIMUM_MISMATCH]: 'Value must be greater than ${0}.',
+<<<<<<< HEAD
     [ConstraintType.EXCLUSIVE_MAXIMUM_MISMATCH]: 'Value must be less than ${0}.'
+=======
+    [ConstraintType.EXCLUSIVE_MAXIMUM_MISMATCH]: 'Value must be less than ${0}.',
+    [ConstraintType.ENUM_MISMATCH]: 'Please select a value from the allowed options.'
+>>>>>>> template/main
 });
 let customConstraintTypeMessages = {};
 const getConstraintTypeMessages = () => {
@@ -376,6 +395,25 @@ class DataValue {
     $bindToField(field) {
         if (this.$_fields.indexOf(field) === -1) {
             this.$_fields.push(field);
+<<<<<<< HEAD
+=======
+            this._checkForTypeConflicts(field);
+        }
+    }
+    _checkForTypeConflicts(newField) {
+        if (this.$_fields.length <= 1) {
+            return;
+        }
+        const newFieldType = newField.type;
+        const conflictingFields = this.$_fields.filter(existingField => existingField &&
+            existingField !== newField &&
+            existingField.type !== newFieldType);
+        if (conflictingFields.length > 0) {
+            const conflictDetails = conflictingFields.map(field => `Field "${field.id}" (${field.type})`).join(', ');
+            console.error('Type conflict detected: Multiple fields with same dataRef have different types. ' +
+                `New field '${newField.id}' (${newFieldType}) conflicts with: ${conflictDetails}. ` +
+                `DataRef: ${this.$name}`);
+>>>>>>> template/main
         }
     }
     $convertToDataValue() {
@@ -1031,6 +1069,37 @@ const replaceTemplatePlaceholders = (str, values = []) => {
         return typeof replacement !== 'undefined' ? replacement : match;
     });
 };
+<<<<<<< HEAD
+=======
+const sanitizeName = (name) => {
+    const nameRegex = /^[A-Za-z0-9_$][A-Za-z0-9_.[\]]*$/;
+    if (name.includes('.')) {
+        const parts = name.split('.');
+        const sanitizedParts = parts.map((part) => {
+            if (part.includes('[')) {
+                const bracketIndex = part.indexOf('[');
+                const namePart = part.substring(0, bracketIndex);
+                const bracketPart = part.substring(bracketIndex);
+                if (!nameRegex.test(namePart)) {
+                    return `"${namePart}"${bracketPart}`;
+                }
+                return part;
+            }
+            else {
+                if (!nameRegex.test(part)) {
+                    return `"${part}"`;
+                }
+                return part;
+            }
+        });
+        return sanitizedParts.join('.');
+    }
+    if (!nameRegex.test(name)) {
+        return `"${name}"`;
+    }
+    return name;
+};
+>>>>>>> template/main
 const dateRegex = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -1404,6 +1473,12 @@ const addOnly = (includeOrExclude) => (...fieldTypes) => (target, propertyKey, d
     const set = descriptor.set;
     if (set != undefined) {
         descriptor.set = function (value) {
+<<<<<<< HEAD
+=======
+            if (this === this._ruleNode) {
+                console.error(`Property '${propertyKey}' is being set through a proxy, which is not supported. Please use globals.functions.setProperty instead.`);
+            }
+>>>>>>> template/main
             if (fieldTypes.indexOf(this.fieldType) > -1 === includeOrExclude) {
                 set.call(this, value);
             }
@@ -1660,16 +1735,26 @@ class BaseNode {
         this.form.getEventQueue().runPendingQueue();
     }
     withDependencyTrackingControl(disableDependencyTracking, callback) {
+<<<<<<< HEAD
         const currentDependencyTracking = this.form.ruleEngine.getDependencyTracking();
         if (disableDependencyTracking) {
             this.form.ruleEngine.setDependencyTracking(false);
+=======
+        const currentDependencyTracking = this.form?.ruleEngine.getDependencyTracking();
+        if (disableDependencyTracking) {
+            this.form?.ruleEngine.setDependencyTracking(false);
+>>>>>>> template/main
         }
         try {
             return callback();
         }
         finally {
             if (disableDependencyTracking) {
+<<<<<<< HEAD
                 this.form.ruleEngine.setDependencyTracking(currentDependencyTracking);
+=======
+                this.form?.ruleEngine.setDependencyTracking(currentDependencyTracking);
+>>>>>>> template/main
             }
         }
     }
@@ -1871,7 +1956,11 @@ class BaseNode {
         else {
             qn = `${parent.qualifiedName}.${this.name}`;
         }
+<<<<<<< HEAD
         if (!this._isAncestorRepeatable()) {
+=======
+        if (!this.repeatable && !this._isAncestorRepeatable()) {
+>>>>>>> template/main
             this[qualifiedName] = qn;
         }
         return qn;
@@ -1924,7 +2013,12 @@ class Scriptable extends BaseNode {
                 try {
                     let updatedRule = eString;
                     if (this.fragment !== '$form') {
+<<<<<<< HEAD
                         updatedRule = eString.replaceAll('$form', this.fragment);
+=======
+                        const sanitizedFragment = sanitizeName(this.fragment);
+                        updatedRule = eString.replaceAll('$form', sanitizedFragment);
+>>>>>>> template/main
                     }
                     this._rules[eName] = this.ruleEngine.compileRule(updatedRule, this.lang);
                 }
@@ -1949,7 +2043,12 @@ class Scriptable extends BaseNode {
                     try {
                         let updatedExpr = x;
                         if (this.fragment !== '$form') {
+<<<<<<< HEAD
                             updatedExpr = x.replaceAll('$form', this.fragment);
+=======
+                            const sanitizedFragment = sanitizeName(this.fragment);
+                            updatedExpr = x.replaceAll('$form', sanitizedFragment);
+>>>>>>> template/main
                         }
                         return this.ruleEngine.compileRule(updatedExpr, this.lang);
                     }
@@ -2487,6 +2586,7 @@ class Container extends Scriptable {
                 return;
             }
             this._data = dataGroup;
+<<<<<<< HEAD
             const result = this.syncDataAndFormModel(dataGroup);
             const newLength = this.items.length;
             result.added.forEach((item) => {
@@ -2499,6 +2599,13 @@ class Container extends Scriptable {
             result.removed.forEach((item) => {
                 this.notifyDependents(propertyChange('items', null, item.getState()));
             });
+=======
+            this.syncDataAndFormModel(dataGroup);
+            const newLength = this.items.length;
+            for (let i = 0; i < newLength; i += 1) {
+                this._children[i].dispatch(new ExecuteRule());
+            }
+>>>>>>> template/main
         }
         else if (typeof this._data === 'undefined') {
             console.warn(`Data node is null, hence importData did not work for panel "${this.name}". Check if parent has a dataRef set to null.`);
@@ -2528,6 +2635,16 @@ class Container extends Scriptable {
                     result.removed.push(this._children.pop());
                 }
             }
+<<<<<<< HEAD
+=======
+            result.added.forEach((item) => {
+                this.notifyDependents(propertyChange('items', item.getState(), null));
+                item.dispatch(new Initialize());
+            });
+            result.removed.forEach((item) => {
+                this.notifyDependents(propertyChange('items', null, item.getState()));
+            });
+>>>>>>> template/main
         }
         this._children.forEach(x => {
             let dataModel = x.bindToDataModel(contextualDataModel);
@@ -2853,7 +2970,11 @@ const request = async (context, uri, httpVerb, payload, success, error, headers)
         method: httpVerb
     };
     let inputPayload;
+<<<<<<< HEAD
     let encryptOutput = {};
+=======
+    let encryptOutput = {}, cryptoMetadata = null;
+>>>>>>> template/main
     try {
         if (payload instanceof Promise) {
             payload = await payload;
@@ -2867,6 +2988,10 @@ const request = async (context, uri, httpVerb, payload, success, error, headers)
         encryptOutput = { ...payload };
         headers = { ...payload.headers };
         payload = payload.body;
+<<<<<<< HEAD
+=======
+        cryptoMetadata = payload.cryptoMetadata;
+>>>>>>> template/main
         inputPayload = payload;
     }
     if (payload && payload instanceof FileObject && payload.data instanceof File) {
@@ -2931,6 +3056,10 @@ const request = async (context, uri, httpVerb, payload, success, error, headers)
         response.originalRequest = {
             url: endpoint,
             method: httpVerb,
+<<<<<<< HEAD
+=======
+            ...(cryptoMetadata && { cryptoMetadata }),
+>>>>>>> template/main
             ...encryptOutput
         };
         response.submitter = targetField;
@@ -3235,13 +3364,25 @@ class FunctionRuntimeImpl {
             getData: {
                 _func: (args, data, interpreter) => {
                     interpreter.globals.form.logger.warn('The `getData` function is depricated. Use `exportData` instead.');
+<<<<<<< HEAD
                     return interpreter.globals.form.exportData();
+=======
+                    return interpreter.globals.form.withDependencyTrackingControl(true, () => {
+                        return interpreter.globals.form.exportData();
+                    });
+>>>>>>> template/main
                 },
                 _signature: []
             },
             exportData: {
                 _func: (args, data, interpreter) => {
+<<<<<<< HEAD
                     return interpreter.globals.form.exportData();
+=======
+                    return interpreter.globals.form.withDependencyTrackingControl(true, () => {
+                        return interpreter.globals.form.exportData();
+                    });
+>>>>>>> template/main
                 },
                 _signature: []
             },
@@ -3429,10 +3570,18 @@ class FunctionRuntimeImpl {
                             throw error;
                         }
                         let finalHeaders = {};
+<<<<<<< HEAD
                         let finalBody = {};
                         if (args.length === 5) {
                             finalBody = payload.body || {};
                             finalHeaders = payload.headers || {};
+=======
+                        let finalBody = {}, finalCryptoMetadata = null;
+                        if (args.length === 5) {
+                            finalBody = payload.body || {};
+                            finalHeaders = payload.headers || {};
+                            finalCryptoMetadata = payload.cryptoMetadata;
+>>>>>>> template/main
                         }
                         else {
                             finalBody = payload || {};
@@ -3452,7 +3601,11 @@ class FunctionRuntimeImpl {
                                 };
                             }
                         }
+<<<<<<< HEAD
                         const finalPayload = { 'body': finalBody, 'headers': finalHeaders };
+=======
+                        const finalPayload = { 'body': finalBody, 'headers': finalHeaders, ...(finalCryptoMetadata && { cryptoMetadata: finalCryptoMetadata }) };
+>>>>>>> template/main
                         try {
                             const response = await request(interpreter.globals, uri, httpVerb, finalPayload, success, errorFn, finalHeaders);
                             return response;
@@ -3686,6 +3839,60 @@ class FunctionRuntimeImpl {
                     return _today / MS_IN_DAY;
                 },
                 _signature: []
+<<<<<<< HEAD
+=======
+            },
+            formatInput: {
+                _func: (args) => {
+                    const input = args[0];
+                    const format = args[1];
+                    if (!input || !format) {
+                        return input;
+                    }
+                    const inputStr = String(input).replace(/\D/g, '');
+                    switch (String(format).toLowerCase()) {
+                        case 'phonenumber': {
+                            if (inputStr.length >= 10) {
+                                const areaCode = inputStr.substring(0, 3);
+                                const firstThree = inputStr.substring(3, 6);
+                                const lastFour = inputStr.substring(6, 10);
+                                return `(${areaCode}) ${firstThree}-${lastFour}`;
+                            }
+                            else if (inputStr.length >= 7) {
+                                const firstThree = inputStr.substring(0, 3);
+                                const lastFour = inputStr.substring(3, 7);
+                                return `(${firstThree}) ${lastFour}`;
+                            }
+                            return inputStr;
+                        }
+                        case 'socialsecuritynumber': {
+                            if (inputStr.length >= 9) {
+                                const firstThree = inputStr.substring(0, 3);
+                                const middleTwo = inputStr.substring(3, 5);
+                                const lastFour = inputStr.substring(5, 9);
+                                return `${firstThree}-${middleTwo}-${lastFour}`;
+                            }
+                            return inputStr;
+                        }
+                        case 'email-alphanumeric': {
+                            const alphanumeric = String(input).replace(/[^a-zA-Z0-9]/g, '');
+                            if (alphanumeric.length > 0) {
+                                return `${alphanumeric}@example.com`;
+                            }
+                            return input;
+                        }
+                        case 'zipcode': {
+                            if (inputStr.length >= 5) {
+                                return inputStr.substring(0, 5);
+                            }
+                            return inputStr;
+                        }
+                        default:
+                            return input;
+                    }
+                },
+                _signature: []
+>>>>>>> template/main
             }
         };
         return { ...defaultFunctions, ...FunctionRuntimeImpl.getInstance().customFunctions };
@@ -4776,10 +4983,17 @@ class Field extends Scriptable {
         if (this._jsonModel.enforceEnum === true && value != null) {
             const fn = constraints.enum;
             if (value instanceof Array && this.isArrayType()) {
+<<<<<<< HEAD
                 return value.every(x => fn(this.enum || [], x).valid);
             }
             else {
                 return fn(this.enum || [], value).valid;
+=======
+                return value.every(x => fn(this._jsonModel.enum || [], x).valid);
+            }
+            else {
+                return fn(this._jsonModel.enum || [], value).valid;
+>>>>>>> template/main
             }
         }
         return true;
