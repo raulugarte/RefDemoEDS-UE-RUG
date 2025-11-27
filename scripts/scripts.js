@@ -333,6 +333,13 @@ export function decorateDMImages(main) {
           crop = blockBeingDecorated?.children[5]?.textContent?.trim();
         }
  
+<<<<<<< HEAD
+=======
+        if(blockBeingDecorated && blockBeingDecorated.classList){
+           blockName = Array.from(blockBeingDecorated.classList).find(className => className !== 'block');
+       }
+
+>>>>>>> ac6ce2e (Local changes before syncing with origin)
         const uuidPattern = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/i;
         const match = url.href?.match(uuidPattern);
         let aliasname = '';
