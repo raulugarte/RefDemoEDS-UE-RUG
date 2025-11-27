@@ -332,7 +332,7 @@ export function decorateDMImages(main) {
           flip = blockBeingDecorated?.children[4]?.textContent?.trim();
           crop = blockBeingDecorated?.children[5]?.textContent?.trim();
         }
-
+ 
         const uuidPattern = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/i;
         const match = url.href?.match(uuidPattern);
         let aliasname = '';
